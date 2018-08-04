@@ -4,7 +4,11 @@
     <string name="timesheet">Thời khoá biểu</string>
     <!--Common string-->
     <string name="select_subject">Chọn môn học</string>
+    
+    <!--Error message-->
+    <string name="request_failed">Request Failed</string>
     <!--Child database value-->
     <string name="CHILD_SUBJECTS">Subjects</string>
     <string name="CHILD_CLASS">Class</string>
+    <string name="CHILD_TIMESHEET">Timesheet</string>
 </resources>

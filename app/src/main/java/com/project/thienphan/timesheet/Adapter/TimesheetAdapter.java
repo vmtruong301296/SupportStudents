@@ -44,7 +44,7 @@ public class TimesheetAdapter extends RecyclerView.Adapter<TimesheetAdapter.Time
         return Data.size();
     }
 
-    public class TimesheetHolder extends RecyclerView.ViewHolder {
+    public class TimesheetHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tvSubjectCode, tvSubjectName, tvSubjectGroup, tvSubjectTeacher, tvSubjectTime, tvSubjectLocation;
 
@@ -56,6 +56,11 @@ public class TimesheetAdapter extends RecyclerView.Adapter<TimesheetAdapter.Time
             tvSubjectTeacher = itemView.findViewById(R.id.tv_item_ts_teacher_name);
             tvSubjectTime = itemView.findViewById(R.id.tv_item_ts_time);
             tvSubjectLocation = itemView.findViewById(R.id.tv_item_ts_location);
+        }
+
+        @Override
+        public void onClick(View view) {
+
         }
     }
 }
