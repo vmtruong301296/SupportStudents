@@ -29,15 +29,7 @@ public class TimesheetAdapter extends RecyclerView.Adapter<TimesheetAdapter.Time
         return new TimesheetHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull TimesheetHolder timesheetHolder, int i) {
-        timesheetHolder.tvSubjectCode.setText(this.Data.get(i).getSubjectCode());
-        timesheetHolder.tvSubjectName.setText(this.Data.get(i).getSubjectName());
-        timesheetHolder.tvSubjectGroup.setText(this.Data.get(i).getSubjectGroup() + "");
-        timesheetHolder.tvSubjectTeacher.setText(this.Data.get(i).getSubjectTeacher());
-        timesheetHolder.tvSubjectTime.setText(this.Data.get(i).getSubjectTime());
-        timesheetHolder.tvSubjectLocation.setText(this.Data.get(i).getSubjectLocation());
-    }
+
 
     @Override
     public int getItemCount() {
@@ -62,5 +54,15 @@ public class TimesheetAdapter extends RecyclerView.Adapter<TimesheetAdapter.Time
         public void onClick(View view) {
 
         }
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull TimesheetHolder timesheetHolder, int i) {
+        timesheetHolder.tvSubjectCode.setText(this.Data.get(i).getSubjectCode());
+        timesheetHolder.tvSubjectName.setText(this.Data.get(i).getSubjectName());
+        timesheetHolder.tvSubjectGroup.setText(this.Data.get(i).getSubjectGroup() + "");
+        timesheetHolder.tvSubjectTeacher.setText(this.Data.get(i).getSubjectTeacher());
+        timesheetHolder.tvSubjectTime.setText(this.Data.get(i).getSubjectTime());
+        timesheetHolder.tvSubjectLocation.setText(this.Data.get(i).getSubjectLocation());
     }
 }

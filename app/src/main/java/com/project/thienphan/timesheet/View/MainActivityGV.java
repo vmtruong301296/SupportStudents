@@ -22,7 +22,7 @@ import com.project.thienphan.timesheet.Support.InfoDialog;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityGV extends AppCompatActivity {
 
     //lay database in firebase
     DatabaseReference mydb = TimesheetDatabase.getTimesheetDatabase();
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // tao button ngay
-    Button btnMonday,btnTuesday,btnWednesday,btnThurday,btnFriday,btnSaturday;
+    Button btnMonday, btnTuesday, btnWednesday, btnThurday, btnFriday, btnSaturday;
 
     // tao nut btnActive mac dinh
     Button btnActive;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     // tao nut button them
     Button btnCreate;
 
-    Button btnGiaovien;
+    Button btnSinhvien;
     // tao textView trống
     TextView txtListEmpty;
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_gv);
 
         addControls();
         addEvents();
@@ -104,32 +104,32 @@ public class MainActivity extends AppCompatActivity {
         btnFriday = findViewById(R.id.btn_ts_friday);
         btnSaturday = findViewById(R.id.btn_ts_saturday);
         btnCreate = findViewById(R.id.btn_ts_create);
-        btnGiaovien = findViewById(R.id.btn_ts_giaovien);
+        btnSinhvien = findViewById(R.id.btn_ts_sinhvien);
     }
 
     // Chưa hiểu lắm trong hàm này
     private void GetData(final int dayofweek) {
         txtListEmpty.setVisibility(View.GONE);
-        this.mydb.child(getString(R.string.CHILD_TIMESHEET)).child("thienphan").addValueEventListener(new ValueEventListener() {
+        this.mydb.child(getString(R.string.CHILD_TIMESHEET)).child("votruong").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 timesheetList.clear();
-                for (DataSnapshot child : dataSnapshot.getChildren()){
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
                     TimesheetItem item = child.getValue(TimesheetItem.class);
                     timesheetList.add(item);
                 }
-                ArrayList<TimesheetItem> temp = TimesheetItem.getTimesheetByDayofWeek(timesheetList,dayofweek);
+                ArrayList<TimesheetItem> temp = TimesheetItem.getTimesheetByDayofWeek(timesheetList, dayofweek);
                 timesheetList.clear();
                 timesheetList.addAll(temp);
                 timesheetAdapter.notifyDataSetChanged();
-                if (timesheetList.size()==0){
+                if (timesheetList.size() == 0) {
                     txtListEmpty.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                InfoDialog.ShowInfoDiaLog(MainActivity.this,"Lỗi",databaseError.toString());
+                InfoDialog.ShowInfoDiaLog(MainActivityGV.this, "Lỗi", databaseError.toString());
             }
         });
     }
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             //Tạo event tương ứng với từng thứ trong tuần với biến GetData
             public void onClick(View view) {
-                if (view == btnMonday){
+                if (view == btnMonday) {
                     setActionButton(btnMonday);
                     GetData(2);
                 } else if (view == btnTuesday) {
@@ -176,15 +176,15 @@ public class MainActivity extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,CreateTimesheet.class);
+                Intent intent = new Intent(MainActivityGV.this, CreateTimesheetGV.class);
                 startActivity(intent);
             }
         });
 
-        btnGiaovien.setOnClickListener(new View.OnClickListener() {
+        btnSinhvien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MainActivityGV.class);
+                Intent intent = new Intent(MainActivityGV.this, MainActivity.class);
                 startActivity(intent);
             }
         });
